@@ -1,0 +1,3 @@
+User-agent: *
+
+sitemap: https://serdarkoktas.com/sitemap.xml
