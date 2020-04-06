@@ -1,0 +1,86 @@
+---
+title: 'Grok plugin but better'
+date: 2020-03-20
+description: Grok is a logstash plugin that I use for parsing logs. In this article, I will talk about how you can use the grok plugin more efficiently.
+tags:
+  - Grok
+  - Elastic Stack
+  - X but better
+banner: ./grok-banner.jpg
+---
+  [Grok](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html) is a logstash plugin that I use for parsing logs.
+In this article, I will talk about how you can use the grok plugin more efficiently.
+***
+
+![Grok](./grok-banner.jpg "Grok")
+
+---
+
+Most of the users assume that the grok expression will only match their log from start to finish. Actually, that's not quite true.
+
+Here is an example.
+
+In order to match a log with the format:
+```noLineNumbers:title=Example-log
+2016-07-11T23:56:42.000+00:00 INFO [MySecretApp.com.Transaction.Manager]:
+Starting transaction for session-464410bf-37bf-475a-afc0-498e0199f008
+```
+We can create a grok expression like this.
+```noLineNumbers:title=Grok-Expression
+%{TIMESTAMP_ISO8601:timestamp} %{LOGLEVEL:log-level} \[%{DATA:class}\]:%{GREEDYDATA:message}
+```
+Which will create the structure:
+```json
+{
+ "timestamp":"2016-07-11T23:56:42.000+00:00",
+ "log-level":"INFO",
+ "class":"MySecretApp.com.Transaction.Manager"
+ "message":"Starting transaction for session-464410bf-37bf-475a-afc0-498e0199f008"
+ }
+```
+
+So far, everything seems okay but not really.
+>In reality, what grok is being told is to **"find this sequence of elements within a line of text"**.
+
+It means that if we modify our log to something like this:
+
+```noLineNumbers:title=Modified-log
+FOO FOO FOO 2016-07-11T23:56:42.000+00:00 INFO [MySecretApp.com.Transaction.Manager]:
+Starting transaction for session-464410bf-37bf-475a-afc0-498e0199f008 FOO FOO FOO
+```
+It will still **match** the grok expression.
+
+For solving this issue, we need to add [Anchors](https://ruby-doc.org/core-1.9.3/Regexp.html#class-Regexp-label-Anchors)
+to our grok expression. We will add **start(^)** and **end of line($)** anchors to our grok expression like this.
+
+```noLineNumbers:title=Grok-Expression-With-Anchors
+^%{TIMESTAMP_ISO8601:timestamp} %{LOGLEVEL:log-level} \[%{DATA:class}\]:%{GREEDYDATA:message}$
+```
+
+After adding anchors to our grok expression, we'll only match our log from start to finish. This will increase the performance
+because the regex engine will not try to find the pattern within substrings of the initial string.
+
+I guess that's all for now. If you enjoyed this, check out my series [X but better](https://serdarkoktas.com/tags/x-but-better).
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
