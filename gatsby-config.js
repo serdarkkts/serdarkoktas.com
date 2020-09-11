@@ -6,7 +6,7 @@ module.exports = {
   siteMetadata: {
     siteTitle: `Serdar KÖKTAS`,
     siteHeadline: `Serdar KÖKTAŞ | Personal Website, blog.`,
-    siteTitleAlt: `Serdar KÖKTAŞ - Student | Adana,TR`,
+    siteTitleAlt: `Serdar KÖKTAŞ - DevOps Engineer`,
     siteDescription: `Serdar KÖKTAŞ | Personal Website, blog.`,
     siteImage: `/banner.jpg`,
     siteUrl: `https://serdarkoktas.com/`,
