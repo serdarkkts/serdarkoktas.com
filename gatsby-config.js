@@ -4,12 +4,12 @@ require(`dotenv`).config({
 
 module.exports = {
   siteMetadata: {
-    siteTitle: `Serdar KÖKTAS`,
+    siteTitle: `Serdar KÖKTAŞ`,
     siteHeadline: `Serdar KÖKTAŞ | Personal Website, blog.`,
-    siteTitleAlt: `Serdar KÖKTAŞ - DevOps Engineer`,
+    siteTitleAlt: `Serdar KÖKTAŞ - Site Reliability Engineer`,
     siteDescription: `Serdar KÖKTAŞ | Personal Website, blog.`,
     siteImage: `/banner.jpg`,
-    siteUrl: `https://serdarkoktas.com/`,
+    siteUrl: `https://serdar.sh/`,
     author: `@serdarkkts`,
     navigation: [
       {

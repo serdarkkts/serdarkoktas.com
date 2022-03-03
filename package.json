@@ -3,7 +3,7 @@
   "name": "serdarkoktas.com",
   "description": "Serdar KÖKTAŞ | Personal Website, blog.",
   "version": "1.0.0",
-  "author": "Serdar KÖKTAŞ - DevOps Engineer",
+  "author": "Serdar KÖKTAŞ - Site Reliability Engineer",
   "starter-name": "gatsby-starter-minimal-blog",
   "scripts": {
     "build": "gatsby build",

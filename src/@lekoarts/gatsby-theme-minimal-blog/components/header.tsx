@@ -27,7 +27,7 @@ const Header = () => {
           sx={{ color: `heading`, textDecoration: `none` }}
         >
           <h1 sx={{ my: 0, fontWeight: `medium`, fontSize: [3, 4] }}>{siteTitle}</h1>
-          <span>DevOps Engineer</span>
+          <span>Site Reliability Engineer</span>
         </Link>
         <ColorModeToggle isDark={isDark} toggle={toggleColorMode} />
       </Flex>
